@@ -1,0 +1,26 @@
+# configs/model.yaml
+model:
+  name: "RadarCameraFusion"
+  
+  # 点云分支配置
+  pointcloud:
+    backbone: "VoxelBackBone8x"
+    input_channels: 13
+    output_channels: 128
+    
+  # 图像分支配置  
+  image:
+    backbone: "ResNet18"
+    pretrained: true
+    output_channels: 256
+    
+  # 融合模块配置
+  fusion:
+    method: "BEVFusion"  # BEV空间融合
+    fusion_channels: 384
+    
+  # 检测头配置
+  detection_head:
+    type: "AnchorFree"
+    num_classes: 3
+    channels: 256

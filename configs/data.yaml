@@ -1,0 +1,86 @@
+# configs/data.yaml
+
+# 数据配置
+data:
+  root_path: "D:/algorithm/DRadDataset"
+  train_split: "train.txt"
+  val_split: "val.txt"
+  test_split: "test.txt"
+  classes: ["Car", "Cyclist", "Truck"]
+
+
+# 雷达参数
+radar:
+  max_range: 25.0
+  azimuth_range: [-56.5, 56.5]
+  elevation_range: [-2.5, 22.5]
+  frame_rate: 12
+  installation_height: 1.85
+
+# 点云处理配置
+pointcloud:
+  # 点云范围限制
+  x_range: [0, 25]
+  y_range: [-25, 25] 
+  z_range: [-2, 5]
+  
+  # 体素化参数
+  voxel_size: [0.16, 0.16, 0.5]
+  max_points_per_voxel: 32
+  max_voxels: 16000
+  
+  # 点云过滤参数
+  min_points: 1
+  max_points: 50000
+  
+  # 特征使用标志
+  use_intensity: true
+  use_velocity: true
+  use_power: true
+  
+  # 点云过滤范围
+  min_distance: 0.0
+  max_distance: 25.0
+  min_azimuth: -56.5
+  max_azimuth: 56.5
+  min_elevation: -2.5
+  max_elevation: 22.5
+  min_doppler: -50.0
+  max_doppler: 50.0
+  min_power: -30.0
+  max_power: 10.0
+  
+  # 特征提取配置
+  use_distance: true
+  use_azimuth: true
+  use_elevation: true
+  use_doppler: true
+  use_coordinates: true
+  use_derived_features: true
+
+# 图像处理配置
+image:
+  target_size: [640, 480]
+  normalize: true
+  mean: [0.485, 0.456, 0.406]
+  std: [0.229, 0.224, 0.225]
+  keep_ratio: false
+  color_mode: "rgb"
+
+# 标定参数配置
+calibration:
+  P0:
+    - [605.6403, 0.0, 319.2964, 0.0]
+    - [0.0, 605.6746, 235.4414, 0.0]
+    - [0.0, 0.0, 1.0, 0.0]
+  
+  Tr_velo_to_cam:
+    - [0, -1, 0, -0.25]
+    - [0, 0, -1, 0.4]
+    - [1, 0, 0, -0.25]
+    - [0, 0, 0, 1]
+  
+  R0_rect:
+    - [1, 0, 0]
+    - [0, 1, 0]
+    - [0, 0, 1]
